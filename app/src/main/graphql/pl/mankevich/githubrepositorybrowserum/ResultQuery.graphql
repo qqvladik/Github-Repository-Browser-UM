@@ -1,0 +1,59 @@
+query GetRepsByOwnerLogin($ownerLogin: String!) {
+    user(login: $ownerLogin) {
+        login
+        repositories(first:10) {
+            totalCount
+            edges {
+                node {
+                    ...RepositorySimple
+                }
+            }
+        }
+    }
+}
+
+query GetRepByNameAndOwnerLogin ($name: String!, $ownerLogin: String!) {
+    repository(name: $name, owner: $ownerLogin) {
+        ...RepositoryDetail
+    }
+}
+
+query SearchUsers ($login: String!) {
+    search(query: $login, type: USER, first: 10) {
+        userCount
+        edges {
+            node {
+                ...UserSimple
+            }
+        }
+    }
+}
+
+fragment RepositorySimple on Repository {
+    name
+}
+
+fragment RepositoryDetail on Repository {
+    owner {
+        login
+    }
+    name
+    description
+    defaultBranchRef {
+        target {
+            ... on Commit {
+                history {
+                    totalCount
+                }
+            }
+        }
+    }
+    issues {
+        totalCount
+    }
+}
+
+fragment UserSimple on User {
+    login
+    name
+}
