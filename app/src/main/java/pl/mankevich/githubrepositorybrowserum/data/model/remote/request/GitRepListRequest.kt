@@ -1,8 +1,9 @@
 package pl.mankevich.githubrepositorybrowserum.data.model.remote.request
 
-private const val DEFAULT_PAGE_SIZE = 20
+import pl.mankevich.githubrepositorybrowserum.core.utils.PAGE_SIZE
 
 data class GitRepListRequest(
     val ownerLogin: String,
-    val pageSize: Int = DEFAULT_PAGE_SIZE
+    val pageSize: Int = PAGE_SIZE,
+    val cursor: String?
 )

@@ -1,6 +1,6 @@
 package pl.mankevich.githubrepositorybrowserum.data.model.remote.dto
 
-data class GitRepListDto(
+data class GitRepsResponseDto(
     val gitRepSimpleList: List<GitRepSimpleDto>,
     val startCursor: String?,
     val hasPreviousPage: Boolean,

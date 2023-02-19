@@ -1,4 +1,4 @@
-package pl.mankevich.githubrepositorybrowserum.data.di
+package pl.mankevich.githubrepositorybrowserum.data.remote.di
 
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.network.http.LoggingInterceptor
@@ -6,10 +6,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import pl.mankevich.githubrepositorybrowserum.core.utils.SERVER_URL
 import pl.mankevich.githubrepositorybrowserum.data.remote.GitApolloInterceptor
 import javax.inject.Singleton
-
-private const val SERVER_URL = "https://api.github.com/graphql"
 
 @Module
 @InstallIn(SingletonComponent::class)

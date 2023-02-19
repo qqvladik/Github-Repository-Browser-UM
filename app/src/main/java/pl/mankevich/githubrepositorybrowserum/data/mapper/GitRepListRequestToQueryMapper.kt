@@ -12,8 +12,8 @@ class GitRepListRequestToQueryMapper @Inject constructor() :
     override fun map(input: GitRepListRequest): GetRepsByOwnerLoginQuery {
         return GetRepsByOwnerLoginQuery(
             ownerLogin = input.ownerLogin,
-            pageSize = 10,//TODO сделать правильно
-            cursor = Optional.absent()
+            pageSize = input.pageSize,
+            cursor = Optional.presentIfNotNull(input.cursor)
         )
     }
 }
