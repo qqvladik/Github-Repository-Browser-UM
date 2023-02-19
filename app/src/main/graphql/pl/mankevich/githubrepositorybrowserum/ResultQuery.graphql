@@ -1,12 +1,18 @@
-query GetRepsByOwnerLogin($ownerLogin: String!) {
+query GetRepsByOwnerLogin($ownerLogin: String!, $pageSize: Int!, $cursor: String) {#TODO добавить page и количество элементов
     user(login: $ownerLogin) {
         login
-        repositories(first:10) {
+        repositories(first: $pageSize, after: $cursor) {
             totalCount
             edges {
                 node {
                     ...RepositorySimple
                 }
+            }
+            pageInfo {
+                startCursor
+                hasPreviousPage
+                endCursor
+                hasNextPage
             }
         }
     }
@@ -18,7 +24,7 @@ query GetRepByNameAndOwnerLogin ($name: String!, $ownerLogin: String!) {
     }
 }
 
-query SearchUsers ($login: String!) {
+query SearchUsers ($login: String!) { #TODO use in future
     search(query: $login, type: USER, first: 10) {
         userCount
         edges {
