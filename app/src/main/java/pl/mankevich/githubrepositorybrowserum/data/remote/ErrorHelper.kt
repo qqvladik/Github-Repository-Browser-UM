@@ -1,12 +1,9 @@
 package pl.mankevich.githubrepositorybrowserum.data.remote
 
-import android.content.Context
 import com.apollographql.apollo3.exception.ApolloException
 import dagger.hilt.components.SingletonComponent
 import it.czerwinski.android.hilt.annotations.BoundTo
 import pl.mankevich.githubrepositorybrowserum.core.utils.extensions.extractInt
-import pl.mankevich.githubrepositorybrowserum.core.utils.extensions.isNetworkAvailable
-import pl.mankevich.githubrepositorybrowserum.data.remote.error.ErrorEntity
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
@@ -20,9 +17,10 @@ interface ErrorHelper {
 }
 
 @BoundTo(supertype = ErrorHelper::class, component = SingletonComponent::class)
-class ErrorHelperImpl @Inject constructor(private val context: Context) : ErrorHelper {
+class ErrorHelperImpl @Inject constructor() : ErrorHelper {
     override fun getErrorByThrowable(throwable: Throwable): ErrorEntity {
         return when (throwable) {
+            is ErrorEntity -> throwable
             is ApolloException -> {
                 throwable.message.let { message ->
                     message?.let {
@@ -41,16 +39,8 @@ class ErrorHelperImpl @Inject constructor(private val context: Context) : ErrorH
             is SocketTimeoutException -> {
                 ErrorEntity.ServerTimeoutError()
             }
-            is IOException -> {
-                if (isInternetAvailable()) {
-                    ErrorEntity.InternalServerError(throwable.message)
-                } else {
-                    ErrorEntity.NoConnectionError()
-                }
-            }
+            is IOException -> ErrorEntity.InternalServerError(throwable.message)
             else -> ErrorEntity.UnknownError(throwable.message)
         }
     }
-
-    private fun isInternetAvailable(): Boolean = context.isNetworkAvailable()
 }
