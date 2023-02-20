@@ -1,7 +1,7 @@
 package pl.mankevich.githubrepositorybrowserum.data.mapper
 
 import pl.mankevich.githubrepositorybrowserum.GetRepByNameAndOwnerLoginQuery
-import pl.mankevich.githubrepositorybrowserum.core.mapper.Mapper
+import pl.mankevich.githubrepositorybrowserum.core.data.mapper.Mapper
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepDetailDto
 import javax.inject.Inject
 

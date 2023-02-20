@@ -2,7 +2,7 @@ package pl.mankevich.githubrepositorybrowserum.data.mapper
 
 import com.apollographql.apollo3.api.Optional
 import pl.mankevich.githubrepositorybrowserum.GetRepsByOwnerLoginQuery
-import pl.mankevich.githubrepositorybrowserum.core.mapper.Mapper
+import pl.mankevich.githubrepositorybrowserum.core.data.mapper.Mapper
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.request.GitRepListRequest
 import javax.inject.Inject
 

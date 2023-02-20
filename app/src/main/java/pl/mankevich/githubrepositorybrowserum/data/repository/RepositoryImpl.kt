@@ -12,7 +12,7 @@ import pl.mankevich.githubrepositorybrowserum.data.model.remote.request.GitRepRe
 import pl.mankevich.githubrepositorybrowserum.domain.repository.Repository
 import javax.inject.Inject
 
-@BoundTo(supertype = Repository::class)
+@BoundTo(supertype = Repository::class, component = SingletonComponent::class)
 class RepositoryImpl @Inject constructor(
     private val remoteDataSourceImpl: RemoteDataSourceImpl
 ) : Repository {
