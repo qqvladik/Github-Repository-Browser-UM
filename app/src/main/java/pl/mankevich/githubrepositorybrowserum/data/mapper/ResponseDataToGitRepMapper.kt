@@ -14,7 +14,7 @@ class ResponseDataToGitRepMapper @Inject constructor() :
             GitRepDetailDto(
                 ownerLogin = rep.owner.login,
                 name = rep.name,
-                description = rep.name,
+                description = rep.description,
                 commitsNumber = rep.defaultBranchRef?.target?.onCommit?.history?.totalCount,
                 issuesNumber = rep.issues.totalCount
             )
