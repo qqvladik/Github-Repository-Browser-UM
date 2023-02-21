@@ -1,8 +1,8 @@
 package pl.mankevich.githubrepositorybrowserum.presentation.detail
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import pl.mankevich.githubrepositorybrowserum.core.presentation.mvi.BaseViewState
-import pl.mankevich.githubrepositorybrowserum.core.presentation.mvi.MviViewModel
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvi.BaseViewState
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvi.MviViewModel
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.request.GitRepRequest
 import pl.mankevich.githubrepositorybrowserum.domain.usecase.FetchRepDetailUseCase
 import javax.inject.Inject

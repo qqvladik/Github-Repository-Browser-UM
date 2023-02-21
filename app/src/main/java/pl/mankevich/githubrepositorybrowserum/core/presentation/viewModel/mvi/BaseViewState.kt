@@ -1,4 +1,4 @@
-package pl.mankevich.githubrepositorybrowserum.core.presentation.mvi
+package pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvi
 
 sealed interface BaseViewState<out T> {
     object Loading : BaseViewState<Nothing>

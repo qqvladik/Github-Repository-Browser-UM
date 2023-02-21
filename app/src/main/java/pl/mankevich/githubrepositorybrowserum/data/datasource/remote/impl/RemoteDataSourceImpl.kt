@@ -8,9 +8,9 @@ import pl.mankevich.githubrepositorybrowserum.data.mapper.GitRepRequestToQueryMa
 import pl.mankevich.githubrepositorybrowserum.data.mapper.ResponseDataToGitRepMapper
 import pl.mankevich.githubrepositorybrowserum.data.mapper.ResponseDataToGitRepsResponseMapper
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepDetailDto
-import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepsResponseDto
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.request.GitRepListRequest
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.request.GitRepRequest
+import pl.mankevich.githubrepositorybrowserum.data.model.remote.response.GitRepsResponse
 import javax.inject.Inject
 
 class RemoteDataSourceImpl @Inject constructor(
@@ -32,7 +32,7 @@ class RemoteDataSourceImpl @Inject constructor(
         )
     }
 
-    override suspend fun fetchGitRepsResponse(request: GitRepListRequest): GitRepsResponseDto {
+    override suspend fun fetchGitRepsResponse(request: GitRepListRequest): GitRepsResponse {
         return responseDataToGitRepsResponseMapper.map(
             networkHelper.apiExecute {
                 apolloClient.query(

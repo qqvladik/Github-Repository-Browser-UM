@@ -5,7 +5,6 @@ import androidx.paging.PagingState
 import pl.mankevich.githubrepositorybrowserum.data.datasource.remote.RemoteDataSource
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepSimpleDto
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.request.GitRepListRequest
-import java.io.IOException
 
 class GitRepListPagingSource(
     private val remoteDataSource: RemoteDataSource,
@@ -17,8 +16,6 @@ class GitRepListPagingSource(
             val anchorPageIndex = state.pages.indexOf(state.closestPageToPosition(anchorPosition))
             state.pages.getOrNull(anchorPageIndex + 1)?.prevKey ?: state.pages.getOrNull(anchorPageIndex - 1)?.nextKey
         }
-
-
     }
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, GitRepSimpleDto> {
@@ -33,12 +30,11 @@ class GitRepListPagingSource(
 
             LoadResult.Page(
                 data = gitRepsResponse.gitRepSimpleList,
-                prevKey = gitRepsResponse.startCursor,
-                nextKey = gitRepsResponse.endCursor
+                prevKey = if (gitRepsResponse.pageInfo.hasPreviousPage) gitRepsResponse.pageInfo.startCursor else null,
+                nextKey = if (gitRepsResponse.pageInfo.hasNextPage) gitRepsResponse.pageInfo.endCursor else null
             )
-        } catch (exception: IOException) {
-            //TODO Поконкретнее обработать ошибки, ведь в мапперах я просто Extension кидаю, кстати ответы 400 я тоже превратил в ошибки
-            return LoadResult.Error(exception)
+        } catch (throwable: Throwable) {
+            return LoadResult.Error(throwable)
         }
     }
 

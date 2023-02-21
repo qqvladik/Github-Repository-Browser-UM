@@ -3,6 +3,7 @@ package pl.mankevich.githubrepositorybrowserum.data.mapper
 import pl.mankevich.githubrepositorybrowserum.GetRepByNameAndOwnerLoginQuery
 import pl.mankevich.githubrepositorybrowserum.core.data.mapper.Mapper
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepDetailDto
+import pl.mankevich.githubrepositorybrowserum.data.remote.ErrorEntity
 import javax.inject.Inject
 
 class ResponseDataToGitRepMapper @Inject constructor() :
@@ -17,6 +18,6 @@ class ResponseDataToGitRepMapper @Inject constructor() :
                 commitsNumber = rep.defaultBranchRef?.target?.onCommit?.history?.totalCount,
                 issuesNumber = rep.issues.totalCount
             )
-        } ?: throw Exception("Response for GetRepByNameAndOwnerLoginQuery doesn't contain repository data!")//TODO improve
+        } ?: throw ErrorEntity.ServerReturnNoDataError("The server did not return any data for GetRepsByOwnerLoginQuery")
     }
 }

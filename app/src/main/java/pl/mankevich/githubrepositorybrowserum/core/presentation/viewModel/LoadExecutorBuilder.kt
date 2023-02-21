@@ -1,4 +1,4 @@
-package pl.mankevich.githubrepositorybrowserum.core.presentation.mvvm
+package pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel
 
 import kotlinx.coroutines.CoroutineScope
 

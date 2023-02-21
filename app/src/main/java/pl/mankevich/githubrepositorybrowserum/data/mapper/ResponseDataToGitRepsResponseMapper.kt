@@ -3,14 +3,17 @@ package pl.mankevich.githubrepositorybrowserum.data.mapper
 import pl.mankevich.githubrepositorybrowserum.GetRepsByOwnerLoginQuery
 import pl.mankevich.githubrepositorybrowserum.core.data.mapper.Mapper
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepSimpleDto
-import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepsResponseDto
+import pl.mankevich.githubrepositorybrowserum.data.model.remote.response.GitRepsResponse
+import pl.mankevich.githubrepositorybrowserum.data.model.remote.response.PageInfo
+import pl.mankevich.githubrepositorybrowserum.data.remote.ErrorEntity
 import javax.inject.Inject
 
 class ResponseDataToGitRepsResponseMapper @Inject constructor() :
-    Mapper<GetRepsByOwnerLoginQuery.Data, GitRepsResponseDto> {
+    Mapper<GetRepsByOwnerLoginQuery.Data, GitRepsResponse> {
 
-    override fun map(input: GetRepsByOwnerLoginQuery.Data): GitRepsResponseDto {
+    override fun map(input: GetRepsByOwnerLoginQuery.Data): GitRepsResponse {
         return input.user?.repositories?.let { reps ->
+            val totalCount = reps.totalCount
             val gitRepSimpleList = reps.edges?.map { edge ->
                 GitRepSimpleDto(edge?.node?.repositorySimple?.name)
             } ?: throw Exception("Response for GetRepsByOwnerLoginQuery doesn't contain repositories data!")
@@ -19,15 +22,18 @@ class ResponseDataToGitRepsResponseMapper @Inject constructor() :
                 val hasPreviousPage = pageInfo.hasPreviousPage
                 val endCursor = pageInfo.endCursor
                 val hasNextPage = pageInfo.hasNextPage
-                GitRepsResponseDto(
+                GitRepsResponse(
+                    totalCount = totalCount,
                     gitRepSimpleList = gitRepSimpleList,
-                    startCursor = startCursor,
-                    hasPreviousPage = hasPreviousPage,
-                    endCursor = endCursor,
-                    hasNextPage = hasNextPage
+                    pageInfo = PageInfo(
+                        startCursor = startCursor,
+                        hasPreviousPage = hasPreviousPage,
+                        endCursor = endCursor,
+                        hasNextPage = hasNextPage
+                    )
                 )
             }
-        } ?: throw Exception("Response for GetRepsByOwnerLoginQuery doesn't contain body!")
+        } ?: throw ErrorEntity.ServerReturnNoDataError("The server did not return any data for GetRepsByOwnerLoginQuery")
 
 
     }

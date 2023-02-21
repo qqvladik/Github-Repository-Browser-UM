@@ -1,10 +1,14 @@
-package pl.mankevich.githubrepositorybrowserum.core.presentation.mvvm
+package pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.error
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.execute
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.loadExecutor
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.success
 
 abstract class MvvmViewModel : ViewModel() {
 
@@ -38,27 +42,4 @@ abstract class MvvmViewModel : ViewModel() {
         }
     }
 
-}
-
-fun <T> MvvmViewModel.loadExecutor(loadExecutorBuilder: LoadExecutorBuilder<T>.() -> Unit) {
-    viewModelScope.loadOperation(loadExecutorBuilder)
-}
-
-fun <T> CoroutineScope.loadOperation(loadExecutorBuilder: LoadExecutorBuilder<T>.() -> Unit) {
-    this.launch {
-        val builder = LoadExecutorBuilder<T>().apply { loadExecutorBuilder() }
-        try {
-            builder.builderStartLambda?.invoke()
-
-            val result = builder.builderApiCall?.invoke(this)!!
-
-            builder.builderSuccess.invoke(result)
-
-
-        } catch (e: Throwable) {
-            builder.builderErrorLambda?.invoke(this, e)
-        } finally {
-            builder.builderFinishLambda?.invoke()
-        }
-    }
 }

@@ -1,8 +1,8 @@
-package pl.mankevich.githubrepositorybrowserum.core.presentation.mvi
+package pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvi
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import pl.mankevich.githubrepositorybrowserum.core.presentation.mvvm.MvvmViewModel
+import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvvm.MvvmViewModel
 
 abstract class MviViewModel<STATE : BaseViewState<*>, EVENT> : MvvmViewModel() {
 

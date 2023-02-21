@@ -1,7 +1,7 @@
-query GetRepsByOwnerLogin($ownerLogin: String!, $pageSize: Int!, $cursor: String) {#TODO добавить page и количество элементов
+query GetRepsByOwnerLogin($ownerLogin: String!, $pageSize: Int!, $cursor: String) {
     user(login: $ownerLogin) {
         login
-        repositories(first: $pageSize, after: $cursor) {
+        repositories(first: $pageSize, after: $cursor, ownerAffiliations: [OWNER]) {
             totalCount
             edges {
                 node {
