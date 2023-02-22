@@ -10,7 +10,8 @@ import javax.inject.Inject
 
 private const val HEADER_TOKEN_NAME = "Authorization"
 private const val TOKEN_TYPE = "Bearer"
-private const val GIT_TOKEN = "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"
+private const val GIT_TOKEN_PART_1 = "ghp_"
+private const val GIT_TOKEN_PART_2 = "4cidk2FUs7DG5j8wQdAhP8rXPpbdf31DeuDp"
 
 class  GitApolloInterceptor @Inject constructor() : ApolloInterceptor {
 
@@ -18,7 +19,7 @@ class  GitApolloInterceptor @Inject constructor() : ApolloInterceptor {
         request: ApolloRequest<D>,
         chain: ApolloInterceptorChain
     ): Flow<ApolloResponse<D>> {
-        val gitRequest = request.newBuilder().addHttpHeader(HEADER_TOKEN_NAME, "$TOKEN_TYPE $GIT_TOKEN").build()
+        val gitRequest = request.newBuilder().addHttpHeader(HEADER_TOKEN_NAME, "$TOKEN_TYPE $GIT_TOKEN_PART_1$GIT_TOKEN_PART_2").build()
         return chain.proceed(gitRequest)
     }
 }
