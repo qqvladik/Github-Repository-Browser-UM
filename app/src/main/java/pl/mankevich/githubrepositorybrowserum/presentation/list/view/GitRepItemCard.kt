@@ -27,7 +27,6 @@ fun GitRepItemCard(
         elevation = 4.dp,
         onClick = onDetailClick,
         modifier = Modifier
-            .padding(8.dp)
             .fillMaxWidth()
     ) {
         Row(

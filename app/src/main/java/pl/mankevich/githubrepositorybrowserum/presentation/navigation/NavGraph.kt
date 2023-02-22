@@ -13,7 +13,7 @@ fun NavGraph(
     modifier: Modifier
 ) {
     val navController = rememberNavController()
-    val navigator: NavigationProvider = NavigationProviderImpl(navController)//TODO надо где-то его задавать через зависимости
+    val navigator: NavigationProvider = NavigationProviderImpl(navController)
     NavHost(
         navController = navController,
         startDestination = Screen.GitRepList.route

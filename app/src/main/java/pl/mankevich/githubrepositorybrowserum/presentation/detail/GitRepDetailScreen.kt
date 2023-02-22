@@ -16,7 +16,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.EmptyView
@@ -87,25 +86,16 @@ fun NavBackAppBar(
     pressOnBack: () -> Unit
 ) {
     TopAppBar(
-        title = {
-            Text(
-                title,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.fillMaxWidth(),
-//                style = JetRortyTypography.h2 //TODO Style
-            )
-        },
+        title = { Text(title) },
         navigationIcon = {
             Icon(
                 rememberVectorPainter(Icons.Filled.ArrowBack),
                 contentDescription = null,
-//                tint = JetRortyColors.navigationBackIconColor, //TODO color и что за tint
                 modifier = Modifier
                     .padding(8.dp)
                     .clickable { pressOnBack.invoke() }
             )
         },
-//        backgroundColor = JetRortyColors.primary, //TODO color
         modifier = Modifier.fillMaxWidth()
     )
 }
