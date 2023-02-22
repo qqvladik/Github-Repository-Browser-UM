@@ -1,14 +1,23 @@
 package pl.mankevich.githubrepositorybrowserum.presentation.detail
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.EmptyView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.ErrorView
@@ -20,9 +29,9 @@ import pl.mankevich.githubrepositorybrowserum.presentation.navigation.Navigation
 
 @Composable
 fun GitRepDetailScreen(
-    navigator: NavigationProvider,//TODO использовать в кнопке назад
-    name: String = "CurrencyExchanger",
-    ownerLogin: String = "qqvladik",
+    navigator: NavigationProvider,
+    name: String,
+    ownerLogin: String,
     modifier: Modifier
 ) {
     val viewModel: GitRepDetailViewModel = hiltViewModel()
@@ -36,7 +45,14 @@ fun GitRepDetailScreen(
     })
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text(name) }) },//TODO добавить стрелку назад
+        topBar = {
+            NavBackAppBar(
+                title = (name),
+                pressOnBack = {
+                    navigator.navigateUp()
+                }
+            )
+        },
         modifier = Modifier.fillMaxSize()
     ) { paddings ->
 
@@ -49,8 +65,7 @@ fun GitRepDetailScreen(
             )
             is BaseViewState.Empty -> EmptyView(modifier = modifier)
             is BaseViewState.Error -> ErrorView(
-                errorMessage = uiState.cast<BaseViewState.Error>().error.message!!,//TODO в error message нуллабл, что-то с этим сделать,
-                // а лучше туда прям error кидать, сделать интерфейс с методом получения текста из ошибки
+                uiState.cast<BaseViewState.Error>().error,
                 action = {
                     viewModel.onTriggerEvent(
                         GitRepDetailEvent.LoadDetail(
@@ -64,4 +79,33 @@ fun GitRepDetailScreen(
 
         }
     }
+}
+
+@Composable
+fun NavBackAppBar(
+    title: String,
+    pressOnBack: () -> Unit
+) {
+    TopAppBar(
+        title = {
+            Text(
+                title,
+                textAlign = TextAlign.Start,
+                modifier = Modifier.fillMaxWidth(),
+//                style = JetRortyTypography.h2 //TODO Style
+            )
+        },
+        navigationIcon = {
+            Icon(
+                rememberVectorPainter(Icons.Filled.ArrowBack),
+                contentDescription = null,
+//                tint = JetRortyColors.navigationBackIconColor, //TODO color и что за tint
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clickable { pressOnBack.invoke() }
+            )
+        },
+//        backgroundColor = JetRortyColors.primary, //TODO color
+        modifier = Modifier.fillMaxWidth()
+    )
 }

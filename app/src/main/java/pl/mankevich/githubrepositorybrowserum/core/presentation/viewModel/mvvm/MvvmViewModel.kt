@@ -16,7 +16,7 @@ abstract class MvvmViewModel : ViewModel() {
         handleError(exception)
     }
 
-    open fun handleError(exception: Throwable) {}
+    open fun handleError(error: Throwable) {}
 
     open fun startLoading() {}
 

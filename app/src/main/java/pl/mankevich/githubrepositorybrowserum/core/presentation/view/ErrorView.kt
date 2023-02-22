@@ -19,10 +19,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pl.mankevich.githubrepositorybrowserum.ui.theme.GithubRepositoryBrowserUMTheme
+import java.lang.Exception
 
 @Suppress("ForbiddenComment")
 @Composable
-fun ErrorView(errorMessage: String, action: () -> Unit) {//TODO здесь обрабатывать ошибки можно
+fun ErrorView(
+    error: Throwable,
+    action: () -> Unit
+) {
+    //TODO add using interface for user's error handling in future
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -31,8 +36,9 @@ fun ErrorView(errorMessage: String, action: () -> Unit) {//TODO здесь об�
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Text(
-            errorMessage, style = MaterialTheme.typography.button,
+            error.message ?: "Unknown error occurred", style = MaterialTheme.typography.button,
             textAlign = TextAlign.Center, fontSize = 16.sp
         )
         Spacer(modifier = Modifier.height(6.dp))
@@ -56,6 +62,6 @@ fun ErrorView(errorMessage: String, action: () -> Unit) {//TODO здесь об�
 @Composable
 fun ErrorPageViewPreview() {
     GithubRepositoryBrowserUMTheme() {
-        ErrorView(errorMessage = "Error") {}
+        ErrorView(error = Exception("Error")) {}
     }
 }

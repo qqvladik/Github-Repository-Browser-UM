@@ -20,8 +20,8 @@ abstract class MviViewModel<STATE : BaseViewState<*>, EVENT> : MvvmViewModel() {
         _uiState.value = BaseViewState.Loading
     }
 
-    override fun handleError(exception: Throwable) {
-        super.handleError(exception)
-        _uiState.value = BaseViewState.Error(exception)
+    override fun handleError(error: Throwable) {
+        super.handleError(error)
+        _uiState.value = BaseViewState.Error(error)
     }
 }

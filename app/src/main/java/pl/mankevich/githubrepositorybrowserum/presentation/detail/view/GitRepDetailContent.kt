@@ -42,21 +42,21 @@ fun GitRepDetailContent(
             ) {
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_owner_text),
-                    value = gitRep.ownerLogin!! //TODO not null
+                    value = gitRep.ownerLogin
                 )
 
                 Divider(modifier = Modifier.padding(horizontal = 6.dp))
 
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_commits_number_text),
-                    value = gitRep.commitsNumber!!.toString() //TODO not null
+                    value = gitRep.commitsNumber.toString()
                 )
 
                 Divider(modifier = Modifier.padding(horizontal = 6.dp))
 
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_issues_number_text),
-                    value = gitRep.issuesNumber!!.toString() //TODO not null
+                    value = gitRep.issuesNumber.toString()
                 )
 
                 Divider(modifier = Modifier.padding(horizontal = 6.dp))

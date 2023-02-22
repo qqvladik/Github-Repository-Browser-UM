@@ -15,7 +15,10 @@ class ResponseDataToGitRepsResponseMapper @Inject constructor() :
         return input.user?.repositories?.let { reps ->
             val totalCount = reps.totalCount
             val gitRepSimpleList = reps.edges?.map { edge ->
-                GitRepSimpleDto(edge?.node?.repositorySimple?.name)
+                GitRepSimpleDto(
+                    name = edge?.node?.repositorySimple?.name
+                        ?: throw Exception("Response for GetRepsByOwnerLoginQuery doesn't contain repositories data!")
+                )
             } ?: throw Exception("Response for GetRepsByOwnerLoginQuery doesn't contain repositories data!")
             reps.pageInfo.let { pageInfo ->
                 val startCursor = pageInfo.startCursor

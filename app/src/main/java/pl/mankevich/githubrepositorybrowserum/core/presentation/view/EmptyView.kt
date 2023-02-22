@@ -22,16 +22,7 @@ fun EmptyView(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-//            text = stringResource(id = R.string.text_no_data_found),//TODO add string resource
-            text = "data not found",//TODO
-            style = MaterialTheme
-                .typography
-                .h5,
-            textAlign = TextAlign.Center,
-            modifier = modifier
-                .fillMaxWidth()
-        )
+
     }
 }
 

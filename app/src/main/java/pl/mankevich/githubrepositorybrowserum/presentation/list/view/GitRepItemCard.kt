@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepSimpleDto
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -22,19 +23,27 @@ fun GitRepItemCard(
     onDetailClick: () -> Unit = {}
 ) {
     Card(
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,
-        onClick = onDetailClick
+        onClick = onDetailClick,
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
+                .padding(horizontal = 12.dp, vertical = 20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                gitRepSimpleDto.name ?: "Name unavailable",//TODO name должен быть не null, в маппере еще исключение ес что кидать
-                style = MaterialTheme.typography.h6, maxLines = 1, overflow = TextOverflow.Ellipsis
+                gitRepSimpleDto.name,
+                style = MaterialTheme
+                    .typography
+                    .body2,
+                fontSize = 20.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }

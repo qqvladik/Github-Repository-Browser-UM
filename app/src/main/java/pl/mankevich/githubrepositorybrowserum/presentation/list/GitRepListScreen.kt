@@ -52,20 +52,17 @@ fun GitRepListScreen(
                     navigator.openGitRepDetail(
                         ownerLogin = ownerLoginNotNull,
                         name = name
-                    ) //TODO
+                    )
                 }
             )
             is BaseViewState.Empty -> EmptyView(modifier = modifier)
             is BaseViewState.Error -> ErrorView(
-                errorMessage = uiState.cast<BaseViewState.Error>().error.message!!,//TODO в error message нуллабл, что-то с этим сделать,
-                // а лучше туда прям error кидать, сделать интерфейс с методом получения текста из ошибки
+                error = uiState.cast<BaseViewState.Error>().error,
                 action = {
                     viewModel.onTriggerEvent(GitRepListEvent.LoadList(ownerLoginNotNull)) //TODO сделать задавание через editText, как уже описано выше
                 }
             )
             is BaseViewState.Loading -> LoadingView()
-            //TODO работает только загрузка из content, эта - нет, так же и error, empty видимо тоже,
-            // просто отображает пустой корневой экран. Возможно изза отсутствия paddingValues
         }
     }
 }
