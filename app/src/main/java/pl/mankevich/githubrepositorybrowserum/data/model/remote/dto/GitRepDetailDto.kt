@@ -4,6 +4,6 @@ data class GitRepDetailDto(
     val ownerLogin: String,
     val name: String,
     val description: String?,
-    val commitsNumber: Int,
+    val commitsNumber: Int?,
     val issuesNumber: Int
 )

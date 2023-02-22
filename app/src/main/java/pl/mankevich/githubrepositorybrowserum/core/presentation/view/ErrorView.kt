@@ -31,8 +31,7 @@ fun ErrorView(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp)
-            .requiredHeight(80.dp),
+            .padding(8.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

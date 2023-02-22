@@ -15,10 +15,7 @@ class ResponseDataToGitRepMapper @Inject constructor() :
                 ownerLogin = rep.owner.login,
                 name = rep.name,
                 description = rep.description,
-                commitsNumber = rep.defaultBranchRef?.target?.onCommit?.history?.totalCount
-                    ?: throw ErrorEntity.ServerReturnNoDataError(
-                        "The server did not return any data for defaultBranchRef in GetRepsByOwnerLoginQuery"
-                    ),
+                commitsNumber = rep.defaultBranchRef?.target?.onCommit?.history?.totalCount,
                 issuesNumber = rep.issues.totalCount
             )
         }

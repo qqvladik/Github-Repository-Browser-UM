@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import pl.mankevich.githubrepositorybrowserum.R
 import pl.mankevich.githubrepositorybrowserum.presentation.detail.GitRepDetailViewState
 
+private const val NO_DATA = "-"
+
 @Composable
 fun GitRepDetailContent(
     paddingValues: PaddingValues,
@@ -46,7 +48,7 @@ fun GitRepDetailContent(
 
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_commits_number_text),
-                    value = gitRep.commitsNumber.toString()
+                    value = gitRep.commitsNumber?.toString() ?: NO_DATA
                 )
 
                 Divider(modifier = Modifier.padding(horizontal = 6.dp))
@@ -66,7 +68,7 @@ fun GitRepDetailContent(
                 )
 
                 Text(
-                    text = gitRep.description ?: "-",
+                    text = gitRep.description ?: NO_DATA,
                     modifier = Modifier
                         .padding(12.dp),
                     style = MaterialTheme.typography.subtitle1

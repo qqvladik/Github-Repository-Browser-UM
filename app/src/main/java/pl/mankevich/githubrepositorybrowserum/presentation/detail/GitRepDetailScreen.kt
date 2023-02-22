@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import pl.mankevich.githubrepositorybrowserum.core.presentation.view.EmptyView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.ErrorView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.LoadingView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvi.BaseViewState
@@ -87,6 +86,7 @@ fun NavBackAppBar(
 ) {
     TopAppBar(
         title = { Text(title) },
+        elevation = 0.dp,
         navigationIcon = {
             Icon(
                 rememberVectorPainter(Icons.Filled.ArrowBack),
