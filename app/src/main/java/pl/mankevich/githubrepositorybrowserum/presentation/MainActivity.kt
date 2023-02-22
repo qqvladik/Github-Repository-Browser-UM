@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import dagger.hilt.android.AndroidEntryPoint
 import pl.mankevich.githubrepositorybrowserum.R
 import pl.mankevich.githubrepositorybrowserum.presentation.navigation.NavGraph
-import pl.mankevich.githubrepositorybrowserum.ui.theme.GithubRepositoryBrowserUMTheme
+import pl.mankevich.githubrepositorybrowserum.core.presentation.theme.GithubRepositoryBrowserUMTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

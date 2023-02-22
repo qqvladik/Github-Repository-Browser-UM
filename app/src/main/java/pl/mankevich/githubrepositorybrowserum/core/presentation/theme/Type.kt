@@ -1,4 +1,4 @@
-package pl.mankevich.githubrepositorybrowserum.ui.theme
+package pl.mankevich.githubrepositorybrowserum.core.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

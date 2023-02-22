@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pl.mankevich.githubrepositorybrowserum.ui.theme.GithubRepositoryBrowserUMTheme
+import pl.mankevich.githubrepositorybrowserum.core.presentation.theme.GithubRepositoryBrowserUMTheme
 
 @Composable
 fun LoadingView() {
