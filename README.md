@@ -31,4 +31,5 @@ p.s. web links don't work for android 12+ by default. For using this you need to
 
 Pagination Github API is cursor-based.
 
+Uladzislau Mankevich
 git repository - https://github.com/qqvladik/Github-Repository-Browser-UM.git
