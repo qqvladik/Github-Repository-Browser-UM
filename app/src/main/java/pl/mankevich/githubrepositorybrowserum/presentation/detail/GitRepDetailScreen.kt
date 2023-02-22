@@ -62,7 +62,7 @@ fun GitRepDetailScreen(
                 paddingValues = paddings,
                 viewState = uiState.cast<BaseViewState.Data<GitRepDetailViewState>>().value
             )
-            is BaseViewState.Empty -> EmptyView(modifier = modifier)
+            is BaseViewState.Empty -> {}
             is BaseViewState.Error -> ErrorView(
                 uiState.cast<BaseViewState.Error>().error,
                 action = {

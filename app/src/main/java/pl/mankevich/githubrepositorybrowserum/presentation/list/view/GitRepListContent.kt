@@ -21,7 +21,7 @@ fun GitRepListContent(
     onDetailClick: (String) -> Unit = {}
 ) {
 
-    val pagingGitRepItems = rememberFlowWithLifecycle(viewState.pagedData).collectAsLazyPagingItems() //TODO Попробовать сделать remember savable
+    val pagingGitRepItems = rememberFlowWithLifecycle(viewState.pagedData).collectAsLazyPagingItems()
 
     if (pagingGitRepItems.loadState.refresh is LoadState.Loading) {
         LoadingView()

@@ -55,7 +55,7 @@ fun GitRepListScreen(
                     )
                 }
             )
-            is BaseViewState.Empty -> EmptyView(modifier = modifier)
+            is BaseViewState.Empty -> {}
             is BaseViewState.Error -> ErrorView(
                 error = uiState.cast<BaseViewState.Error>().error,
                 action = {
