@@ -26,7 +26,9 @@ class ErrorHelperImpl @Inject constructor() : ErrorHelper {
                     message?.let {
                         if (message.contains("Http request failed with status code")) {
                             when (message.extractInt()) {
-                                HttpURLConnection.HTTP_UNAUTHORIZED -> throw ErrorEntity.UnauthorizedError(message)
+                                HttpURLConnection.HTTP_UNAUTHORIZED -> throw ErrorEntity.UnauthorizedError(
+                                    "Unauthorized error 401. May be your github token is invalid"
+                                )
                                 HttpURLConnection.HTTP_NOT_FOUND -> ErrorEntity.NotFoundError(message)
                                 else -> ErrorEntity.UnknownError(message)
                             }

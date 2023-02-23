@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import pl.mankevich.githubrepositorybrowserum.core.presentation.view.EmptyView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.ErrorView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.LoadingView
 import pl.mankevich.githubrepositorybrowserum.core.utils.extensions.cast
@@ -29,6 +30,12 @@ fun GitRepListContent(
     if (pagingGitRepItems.loadState.refresh is LoadState.Error) {
         ErrorView(pagingGitRepItems.loadState.refresh.cast<LoadState.Error>().error) {
             pagingGitRepItems.retry()
+        }
+    }
+    if ( pagingGitRepItems.loadState.append.endOfPaginationReached )
+    {
+        if ( pagingGitRepItems.itemCount < 1){
+            EmptyView("Empty list")
         }
     }
 
