@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import dagger.hilt.android.AndroidEntryPoint
 import pl.mankevich.githubrepositorybrowserum.R
-import pl.mankevich.githubrepositorybrowserum.presentation.navigation.NavGraph
 import pl.mankevich.githubrepositorybrowserum.core.presentation.theme.GithubRepositoryBrowserUMTheme
+import pl.mankevich.githubrepositorybrowserum.presentation.navigation.NavGraph
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = modifier, color = MaterialTheme.colors.background) {
                     Scaffold(
                         topBar = { TopAppBar(title = { Text(stringResource(id = R.string.app_name)) }) },
-                        modifier = Modifier.fillMaxSize()
+                        modifier = modifier
                     ) {}
                     NavGraph(modifier = modifier)
                 }

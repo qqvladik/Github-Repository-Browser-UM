@@ -4,10 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -19,19 +16,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pl.mankevich.githubrepositorybrowserum.core.presentation.theme.GithubRepositoryBrowserUMTheme
-import java.lang.Exception
 
 @Suppress("ForbiddenComment")
 @Composable
 fun ErrorView(
     error: Throwable,
-    action: () -> Unit
+    modifier: Modifier = Modifier,
+    action: () -> Unit,
 ) {
     //TODO add using interface for user's error handling in future
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

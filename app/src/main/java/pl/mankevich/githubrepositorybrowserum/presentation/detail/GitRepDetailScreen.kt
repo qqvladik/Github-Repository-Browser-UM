@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.ErrorView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.LoadingView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.viewModel.mvi.BaseViewState
@@ -30,7 +31,7 @@ fun GitRepDetailScreen(
     navigator: NavigationProvider,
     name: String,
     ownerLogin: String,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val viewModel: GitRepDetailViewModel = hiltViewModel()
     LaunchedEffect(key1 = viewModel, block = {
@@ -51,19 +52,22 @@ fun GitRepDetailScreen(
                 }
             )
         },
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier
     ) { paddings ->
 
-        val uiState by viewModel.uiState.collectAsState()
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
         when (uiState) {
             is BaseViewState.Data -> GitRepDetailContent(
-                paddingValues = paddings,
-                viewState = uiState.cast<BaseViewState.Data<GitRepDetailViewState>>().value
+                viewState = uiState.cast<BaseViewState.Data<GitRepDetailViewState>>().value,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddings)
             )
             is BaseViewState.Empty -> {}
             is BaseViewState.Error -> ErrorView(
-                uiState.cast<BaseViewState.Error>().error,
+                error = uiState.cast<BaseViewState.Error>().error,
+                modifier = modifier.padding(8.dp),
                 action = {
                     viewModel.onTriggerEvent(
                         GitRepDetailEvent.LoadDetail(
@@ -73,7 +77,9 @@ fun GitRepDetailScreen(
                     )
                 }
             )
-            is BaseViewState.Loading -> LoadingView()
+            is BaseViewState.Loading -> LoadingView(
+                modifier = modifier.padding(8.dp)
+            )
 
         }
     }

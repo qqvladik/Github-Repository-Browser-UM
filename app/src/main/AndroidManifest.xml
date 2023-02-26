@@ -16,8 +16,10 @@
         android:theme="@style/Theme.GithubRepositoryBrowserUM"
         android:name=".App"
         >
+<!--        TODO попробовать обойтись без configChanges-->
         <activity
             android:name=".presentation.MainActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.GithubRepositoryBrowserUM">

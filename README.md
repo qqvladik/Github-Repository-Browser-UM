@@ -27,7 +27,7 @@ Screens:
 Also this app can be launched via web link, for example after clicking on https://github.com/qqvladik/Github-Repository-Browser-UM it will open detailed screen with information for Github Repository Browser UM.
 The same way will work for user repositories after clicking on web link for user, f.e. https://github.com/qqvladik.
 
-p.s. web links don't work for android 12+ by default. For using this you need to add in "Open by default" link in settings of this android app.
+p.s. web links don't work for android 12+ by default. For using this you need to choose link from list in "Open by default" in settings of this android app.
 
 Pagination Github API is cursor-based.
 

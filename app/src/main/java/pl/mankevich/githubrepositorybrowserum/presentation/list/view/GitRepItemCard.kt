@@ -20,14 +20,14 @@ import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepSimple
 @Composable
 fun GitRepItemCard(
     gitRepSimpleDto: GitRepSimpleDto,
+    modifier: Modifier = Modifier,
     onDetailClick: () -> Unit = {}
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = 4.dp,
         onClick = onDetailClick,
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
     ) {
         Row(
             modifier = Modifier

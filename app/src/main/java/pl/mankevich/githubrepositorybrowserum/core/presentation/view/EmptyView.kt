@@ -19,12 +19,11 @@ import pl.mankevich.githubrepositorybrowserum.core.presentation.theme.GithubRepo
 @Suppress("ForbiddenComment")
 @Composable
 fun EmptyView(
-    text: String = "Empty"
+    modifier: Modifier = Modifier,
+    text: String = "Empty",
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -32,7 +31,7 @@ fun EmptyView(
         Text(
             text,
             style = MaterialTheme.typography.button,
-            textAlign = TextAlign.Center, fontSize = 16.sp
+            textAlign = TextAlign.Center, fontSize = 16.sp,
         )
     }
 }

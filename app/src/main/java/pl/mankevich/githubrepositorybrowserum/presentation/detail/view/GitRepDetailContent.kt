@@ -3,7 +3,6 @@ package pl.mankevich.githubrepositorybrowserum.presentation.detail.view
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,57 +19,61 @@ import androidx.compose.ui.unit.dp
 import pl.mankevich.githubrepositorybrowserum.R
 import pl.mankevich.githubrepositorybrowserum.presentation.detail.GitRepDetailViewState
 
-private const val NO_DATA = "-"
+private const val NO_DATA = "-" // TODO мб в ресурсы
 
 @Composable
 fun GitRepDetailContent(
-    paddingValues: PaddingValues,
-    viewState: GitRepDetailViewState
+    viewState: GitRepDetailViewState,
+    modifier: Modifier = Modifier
 ) {
-    Box(
-        modifier = Modifier
-            .padding(paddingValues)
-            .fillMaxWidth(),
-        contentAlignment = Alignment.Center
-    ) {
+    Box(modifier = modifier) {
         viewState.gitRepDetailDto?.let { gitRep ->
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(12.dp)
             ) {
+                val rowModifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 12.dp)
+
+                val dividerModifier = Modifier.padding(horizontal = 6.dp)
+
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_owner_text),
-                    value = gitRep.ownerLogin
+                    value = gitRep.ownerLogin,
+                    modifier = rowModifier
                 )
 
-                Divider(modifier = Modifier.padding(horizontal = 6.dp))
+                Divider(dividerModifier)
 
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_commits_number_text),
-                    value = gitRep.commitsNumber?.toString() ?: NO_DATA
+                    value = gitRep.commitsNumber?.toString() ?: NO_DATA,
+                    modifier = rowModifier
                 )
 
-                Divider(modifier = Modifier.padding(horizontal = 6.dp))
+                Divider(dividerModifier)
 
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_issues_number_text),
-                    value = gitRep.issuesNumber.toString()
+                    value = gitRep.issuesNumber.toString(),
+                    modifier = rowModifier
                 )
 
-                Divider(modifier = Modifier.padding(horizontal = 6.dp))
+                Divider(dividerModifier)
+
+                val descriptionModifier = Modifier.padding(12.dp)
 
                 Text(
                     text = stringResource(id = R.string.git_rep_detail_description_text),
-                    modifier = Modifier
-                        .padding(12.dp),
+                    modifier = descriptionModifier,
                     style = MaterialTheme.typography.h6
                 )
 
                 Text(
                     text = gitRep.description ?: NO_DATA,
-                    modifier = Modifier
-                        .padding(12.dp),
+                    modifier = descriptionModifier,
                     style = MaterialTheme.typography.subtitle1
                 )
             }
@@ -79,14 +82,17 @@ fun GitRepDetailContent(
 }
 
 @Composable
-private fun TextRow(key: String, value: String) {
+private fun TextRow(
+    key: String,
+    value: String,
+    modifier: Modifier = Modifier
+) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp, bottom = 12.dp),
+        modifier = modifier,
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
+
         Text(
             text = key,
             maxLines = 1,
@@ -94,6 +100,7 @@ private fun TextRow(key: String, value: String) {
             style = MaterialTheme.typography.body2,
             textAlign = TextAlign.Start
         )
+
         Text(
             text = value,
             maxLines = 2,
