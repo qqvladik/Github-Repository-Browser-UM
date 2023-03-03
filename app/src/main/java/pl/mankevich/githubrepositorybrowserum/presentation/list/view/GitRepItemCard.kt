@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import pl.mankevich.githubrepositorybrowserum.data.model.remote.dto.GitRepSimpleDto
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun GitRepItemCard(
     gitRepSimpleDto: GitRepSimpleDto,

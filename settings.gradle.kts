@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Github Repository Browser UM"
-include ':app'
+include(":app")
