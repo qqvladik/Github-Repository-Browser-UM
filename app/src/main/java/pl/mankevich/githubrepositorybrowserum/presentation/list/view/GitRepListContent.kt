@@ -8,10 +8,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import pl.mankevich.githubrepositorybrowserum.R
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.EmptyView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.ErrorView
 import pl.mankevich.githubrepositorybrowserum.core.presentation.view.LoadingView
@@ -42,7 +44,7 @@ fun GitRepListContent(
     if (pagingGitRepItems.loadState.append.endOfPaginationReached) {
         if (pagingGitRepItems.itemCount < 1) {
             EmptyView(
-                text = "Empty list", //TODO magic string
+                text = stringResource(id = R.string.git_rep_list_empty),
                 modifier = stateContentModifier
             )
         }
@@ -51,7 +53,6 @@ fun GitRepListContent(
     LazyColumn(
         contentPadding = PaddingValues(12.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        state = rememberLazyListState(), //TODO проверить
         modifier = modifier
     ) {
         val cardModifier = Modifier.fillMaxWidth()

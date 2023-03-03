@@ -16,7 +16,7 @@
         android:theme="@style/Theme.GithubRepositoryBrowserUM"
         android:name=".App"
         >
-<!--        TODO попробовать обойтись без configChanges-->
+
         <activity
             android:name=".presentation.MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"

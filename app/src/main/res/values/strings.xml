@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">Github Repository Browser UM</string>
 
+    <string name="git_rep_list_empty">Empty list</string>
+
     <string name="git_rep_detail_information_text">Information</string>
     <string name="git_rep_detail_owner_text">Owner: </string>
     <string name="git_rep_detail_commits_number_text">Commits: </string>
     <string name="git_rep_detail_issues_number_text">Issues: </string>
     <string name="git_rep_detail_description_text">Description</string>
 
+    <string name="git_rep_detail_no_data">-</string>
 </resources>

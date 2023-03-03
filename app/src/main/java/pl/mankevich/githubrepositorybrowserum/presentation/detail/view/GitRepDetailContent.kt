@@ -19,8 +19,6 @@ import androidx.compose.ui.unit.dp
 import pl.mankevich.githubrepositorybrowserum.R
 import pl.mankevich.githubrepositorybrowserum.presentation.detail.GitRepDetailViewState
 
-private const val NO_DATA = "-" // TODO мб в ресурсы
-
 @Composable
 fun GitRepDetailContent(
     viewState: GitRepDetailViewState,
@@ -33,6 +31,7 @@ fun GitRepDetailContent(
                     .fillMaxWidth()
                     .padding(12.dp)
             ) {
+                val noData = stringResource(id = R.string.git_rep_detail_no_data)
                 val rowModifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 12.dp)
@@ -49,7 +48,7 @@ fun GitRepDetailContent(
 
                 TextRow(
                     key = stringResource(id = R.string.git_rep_detail_commits_number_text),
-                    value = gitRep.commitsNumber?.toString() ?: NO_DATA,
+                    value = gitRep.commitsNumber?.toString() ?: noData,
                     modifier = rowModifier
                 )
 
@@ -72,7 +71,7 @@ fun GitRepDetailContent(
                 )
 
                 Text(
-                    text = gitRep.description ?: NO_DATA,
+                    text = gitRep.description ?: noData,
                     modifier = descriptionModifier,
                     style = MaterialTheme.typography.subtitle1
                 )
