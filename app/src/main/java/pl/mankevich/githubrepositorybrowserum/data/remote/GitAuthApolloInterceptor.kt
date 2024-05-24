@@ -6,13 +6,12 @@ import com.apollographql.apollo3.api.Operation
 import com.apollographql.apollo3.interceptor.ApolloInterceptor
 import com.apollographql.apollo3.interceptor.ApolloInterceptorChain
 import kotlinx.coroutines.flow.Flow
+import pl.mankevich.githubrepositorybrowserum.BuildConfig
 import javax.inject.Inject
 
 private const val HEADER_TOKEN_NAME = "Authorization"
 private const val TOKEN_TYPE = "Bearer"
-private const val GIT_TOKEN_PART_1 = "ghp_"
-private const val GIT_TOKEN_PART_2 = "Qr5a5PeGWzkTX7AaIp"
-private const val GIT_TOKEN_PART_3 = "AChICFOWRBFn4Grqa3"
+private const val GIT_TOKEN = BuildConfig.GIT_TOKEN
 
 class  GitApolloInterceptor @Inject constructor() : ApolloInterceptor {
 
@@ -21,7 +20,7 @@ class  GitApolloInterceptor @Inject constructor() : ApolloInterceptor {
         chain: ApolloInterceptorChain
     ): Flow<ApolloResponse<D>> {
         val gitRequest = request.newBuilder().addHttpHeader(
-            HEADER_TOKEN_NAME, "$TOKEN_TYPE $GIT_TOKEN_PART_1$GIT_TOKEN_PART_2$GIT_TOKEN_PART_3"
+            HEADER_TOKEN_NAME, "$TOKEN_TYPE $GIT_TOKEN"
         ).build()
         return chain.proceed(gitRequest)
     }

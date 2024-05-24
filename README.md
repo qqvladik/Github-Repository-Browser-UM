@@ -17,6 +17,15 @@ This app allows find repositories for certain user and show detailed information
 
 - Android Web links
 
+## Github API Token
+
+To get this app working, you need to get an Github API Token
+and include it in the `local.properties` file as follows:
+
+```
+GIT_TOKEN = insert_your_api_key_here
+```
+
 ## Description
 Screens: 
 
